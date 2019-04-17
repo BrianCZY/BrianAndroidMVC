@@ -4,15 +4,16 @@ import android.content.Context;
 
 import com.brian.mvc.androidmvcpattern.base.IBaseModel;
 import com.brian.mvc.androidmvcpattern.base.IBaseView;
+import com.brian.mvc.androidmvcpattern.bean.PropertiesBean;
 
 public interface MainContract {
-    interface IModel<I extends IBaseView> extends IBaseModel {
-        void requsetFile(Context context, String path, IView iView);
+    interface IModel extends IBaseModel<IView> {
+        void requsetFile(Context context, String file);
     }
 
     interface IView extends IBaseView {
 
-        void readProtiesSuccess(String str);
+        void readProtiesSuccess(PropertiesBean propertiesBean);
 
     }
 }
