@@ -3,6 +3,7 @@ package com.brian.mvc.androidmvcpattern.controller.activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.brian.mvc.androidmvcpattern.R;
 import com.brian.mvc.androidmvcpattern.contract.MainContract;
@@ -28,13 +29,13 @@ public class MainActivity extends AppCompatActivity implements MainContract.IVie
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ButterKnife.bind(MainActivity.this);
+        ButterKnife.bind(this);
         mMainModel = new MainModelImpl();
     }
 
     @Override
     public void readProtiesSuccess(String str) {
-
+        Toast.makeText(MainActivity.this, str, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -48,10 +49,10 @@ public class MainActivity extends AppCompatActivity implements MainContract.IVie
     }
 
     @OnClick({R.id.btn_read_file, R.id.tv_goto_second})
-    public void onViewClicked(View view) {
+    public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_read_file:
-                mMainModel.requsetFile("", this);
+                mMainModel.requsetFile(MainActivity.this, "", this);
                 break;
             case R.id.tv_goto_second:
                 break;
